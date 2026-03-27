@@ -1,0 +1,171 @@
+import {
+  motion
+} from "framer-motion";
+import {
+  MapPin,
+  Plane,
+  Star,
+} from "lucide-react";
+import herogif from "../assets/droneshot.gif";
+
+// --- THEME COLORS ---
+// const colors = {
+//   blue: "#002db3",
+//   gold: "#e8bc5b",
+//   green: "#8dc63f",
+//   dark: "#0a192f",
+//   light: "#f8f9fa",
+// };
+
+export default function App() {
+
+
+  return (
+    <div className="bg-white min-h-screen font-sans overflow-x-hidden selection:bg-[#e8bc5b] selection:text-white">
+      {/* --- NEW REDESIGNED HERO SECTION --- */}
+      <section className="relative min-h-screen w-full bg-[#0a192f] overflow-hidden flex items-center pt-24 pb-12">
+        {/* Subtle glowing abstract background element */}
+        <div className="absolute top-0 right-0 w-[50vw] h-screen bg-[#002db3] rounded-l-full opacity-40 blur-[120px] translate-x-1/3"></div>
+        <div className="absolute bottom-0 left-0 w-[30vw] h-[50vh] bg-[#8dc63f] rounded-tr-full opacity-10 blur-[100px] -translate-x-1/4"></div>
+
+        <div className="max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+          {/* Left Column: Typography & CTAs */}
+          <div className="text-left py-12 lg:py-0">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <span className="text-[#8dc63f] font-medium tracking-widest uppercase text-sm mb-6 flex items-center gap-2">
+                <Plane size={16} /> Welcome to Explore Epic
+              </span>
+
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-white leading-[1.1] mb-6 tracking-wide">
+                Curating <br />
+                <span className="text-[#e8bc5b] font-serif italic pr-2">
+                  Extraordinary
+                </span>
+                <br />
+                <span className="font-bold text-4xl md:text-5xl tracking-widest uppercase">
+                  Journeys
+                </span>
+              </h1>
+
+              <p className="text-base text-gray-300 font-light mb-10 max-w-lg leading-relaxed bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-sm">
+                <span className="text-[#e8bc5b] font-medium">
+                  Holiday Sale!
+                </span>{" "}
+                Get 40% off on all exclusive sale packages and epic holiday
+                escapes.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4">
+                <button className="bg-[#8dc63f] hover:bg-[#7ab033] text-white px-8 py-3.5 rounded-full font-medium text-sm transition-all shadow-lg flex items-center gap-2 group">
+                  Explore The Map
+                  <MapPin
+                    size={16}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </button>
+                <button className="bg-transparent border border-gray-500 hover:border-white text-white px-8 py-3.5 rounded-full font-medium text-sm transition-all flex items-center gap-2">
+                  View Experiences
+                </button>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Dynamic Image Collage */}
+          <div className="relative h-[450px] sm:h-[550px] lg:h-[650px] w-full hidden md:block mt-10 lg:mt-0">
+            {/* Top Right Main Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="absolute right-0 top-4 w-[65%] h-[75%] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 z-10"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80"
+                alt="Scenic View"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            </motion.div>
+
+            {/* Bottom Left Secondary Image */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="absolute left-0 bottom-4 w-[55%] h-[60%] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-[#0a192f] z-20"
+            >
+              <img
+                src={herogif}
+                alt="Architecture"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              />
+            </motion.div>
+
+            {/* Floating Trust Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="absolute top-1/2 left-[10%] z-30 bg-white/10 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-white/20 flex items-center gap-4 -translate-y-1/2"
+            >
+              <div className="flex -space-x-3">
+                <img
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80"
+                  alt="User"
+                  className="w-10 h-10 rounded-full border-2 border-[#0a192f] object-cover"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80"
+                  alt="User"
+                  className="w-10 h-10 rounded-full border-2 border-[#0a192f] object-cover"
+                />
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80"
+                  alt="User"
+                  className="w-10 h-10 rounded-full border-2 border-[#0a192f] object-cover"
+                />
+              </div>
+              <div>
+                <div className="flex text-[#e8bc5b] text-sm">
+                  <Star size={14} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
+                </div>
+                <p className="text-white text-xs font-medium mt-1 tracking-wide">
+                  10k+ Happy Travelers
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+      {/* Global Style overrides for hiding scrollbar in sliders while maintaining smooth native functionality */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        html {
+          scroll-behavior: smooth;
+        }
+        @keyframes shimmer {
+          0% { background-position: 200% center; }
+          100% { background-position: -200% center; }
+        }
+        .animate-shimmer {
+          background-size: 200% auto;
+          animation: shimmer 4s linear infinite;
+        }
+      `,
+        }}
+      />
+    </div>
+  );
+}
