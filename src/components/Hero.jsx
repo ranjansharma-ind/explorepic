@@ -1,11 +1,5 @@
-import {
-  motion
-} from "framer-motion";
-import {
-  ArrowRight,
-  Plane,
-  Star,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { MapPin, Compass, ChevronDown, Plane, Star } from "lucide-react";
 import herogif from "../assets/droneshot.gif";
 
 // --- THEME COLORS ---
@@ -18,8 +12,6 @@ import herogif from "../assets/droneshot.gif";
 // };
 
 export default function App() {
-
-
   return (
     <div className="bg-white min-h-screen font-sans overflow-x-hidden selection:bg-[#e8bc5b] selection:text-white">
       {/* --- NEW REDESIGNED HERO SECTION --- */}
@@ -58,17 +50,41 @@ export default function App() {
                 escapes.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4">
-                <button className="bg-[#8dc63f] hover:bg-[#7ab033] text-white px-8 py-3.5 rounded-full font-medium text-sm transition-all shadow-lg flex items-center gap-2 group">
-                  View Flash Sales
-                  <ArrowRight
-                    size={16}
-                    className="group-hover:translate-x-2 transition-transform"
+              {/* Search Bar Component */}
+              <div className="w-full max-w-5xl bg-white/95 backdrop-blur-md rounded-lg flex flex-col md:flex-row items-center shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-white/40">
+                {/* Location Input */}
+                <div className="flex items-center flex-1 px-5 py-5 w-full md:border-r border-gray-100 group">
+                  <MapPin
+                    className="text-[#004dc2] mr-4 transition-transform group-hover:scale-110"
+                    size={22}
                   />
+                  <div className="flex flex-col items-start w-full">
+                    <input
+                      type="text"
+                      placeholder="Where do you go?"
+                      className="bg-transparent border-none focus:ring-0 text-[#1a2b49] placeholder-gray-400 w-full text-base font-medium outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Theme Dropdown */}
+                <div className="flex items-center flex-1 px-5 py-5 w-full group cursor-pointer hover:bg-gray-50/50 transition-colors">
+                  <Compass
+                    className="text-[#004dc2] mr-4 transition-transform group-hover:rotate-12"
+                    size={22}
+                  />
+                  <div className="flex justify-between items-center w-full">
+                    <span className="text-gray-400 font-medium">
+                      Trip Theme
+                    </span>
+                    <ChevronDown className="text-gray-400" size={20} />
+                  </div>
+                </div>
+
+                {/* Action Button */}
+                <button className="bg-[#004dc2] hover:bg-[#003da1] text-white font-bold px-12 py-5 rounded-full transition-all flex items-center justify-center gap-3 shadow-lg hover:shadow-xl w-80 md:w-auto m-1">
+                  <span className="text-lg">Find Trips</span>
                 </button>
-                {/* <button className="bg-transparent border border-gray-500 hover:border-white text-white px-8 py-3.5 rounded-full font-medium text-sm transition-all flex items-center gap-2">
-                  View Experiences
-                </button> */}
               </div>
             </motion.div>
           </div>
