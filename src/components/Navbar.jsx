@@ -19,7 +19,7 @@ export default function Navbar() {
     <div>
       {/* --- HEADER & NAVBAR --- */}
       <header
-        className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? "bg-[#002db3] shadow-xl" : "bg-transparent"}`}
+        className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? "bg-white/90 shadow-xl" : "bg-transparent"}`}
       >
         {/* Top Announcement Banner */}
         <div
@@ -45,53 +45,37 @@ export default function Navbar() {
               <img src={logo} alt="logo" className="h-12"/>
               </div>
 
-            {/* Logo */}
-            {/* <div className="flex items-center gap-2 cursor-pointer">
-              <div className="relative flex items-center justify-center">
-                <span
-                  className={`font-serif text-[#e8bc5b] tracking-tighter transition-all duration-500 ${isScrolled ? "text-3xl" : "text-4xl"}`}
-                  style={{ fontFamily: "Times New Roman, serif" }}
-                >
-                  EE
-                </span>
-                <MapPin
-                  className={`absolute text-[#8dc63f] opacity-80 transition-all duration-500 ${isScrolled ? "w-6 h-6" : "w-8 h-8"}`}
-                  strokeWidth={2.5}
-                />
-              </div>
-              <div className="flex flex-col ml-2 leading-none">
-                <span
-                  className={`font-medium tracking-widest transition-all duration-500 ${isScrolled ? "text-[#002db3] text-lg" : "text-white text-xl"}`}
-                >
-                  EXPLORE
-                </span>
-                <span
-                  className={`font-light tracking-widest transition-all duration-500 ${isScrolled ? "text-[#002db3] text-lg" : "text-gray-200 text-lg"}`}
-                >
-                  EPIC
-                </span>
-              </div>
-            </div> */}
-
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-6 lg:gap-10">
               <a
                 href="#destinations"
-                className="text-white hover:text-[#e8bc5b] transition-colors font-light"
+                className="text-black hover:text-[#e8bc5b] transition-colors font-light"
               >
-                Destinations
+                Home
               </a>
               <a
                 href="#experience"
                 className="text-white hover:text-[#e8bc5b] transition-colors font-light"
               >
-                Experience
+                All Trips
               </a>
               <a
                 href="#about"
                 className="text-white hover:text-[#e8bc5b] transition-colors font-light"
               >
-                About Us
+                Group Trips
+              </a>
+              <a
+                href="#about"
+                className="text-white hover:text-[#e8bc5b] transition-colors font-light"
+              >
+                Corporate
+              </a>
+              <a
+                href="#about"
+                className="text-white hover:text-[#e8bc5b] transition-colors font-light"
+              >
+                Offers
               </a>
             </div>
 

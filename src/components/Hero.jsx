@@ -2,7 +2,7 @@ import {
   motion
 } from "framer-motion";
 import {
-  MapPin,
+  ArrowRight,
   Plane,
   Star,
 } from "lucide-react";
@@ -23,7 +23,7 @@ export default function App() {
   return (
     <div className="bg-white min-h-screen font-sans overflow-x-hidden selection:bg-[#e8bc5b] selection:text-white">
       {/* --- NEW REDESIGNED HERO SECTION --- */}
-      <section className="relative min-h-screen w-full bg-[#0a192f] overflow-hidden flex items-center pt-24 pb-12">
+      <section className="relative min-h-screen w-full bg-cover bg-center bg-[url('https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] overflow-hidden flex items-center pt-24 pb-12">
         {/* Subtle glowing abstract background element */}
         <div className="absolute top-0 right-0 w-[50vw] h-screen bg-[#002db3] rounded-l-full opacity-40 blur-[120px] translate-x-1/3"></div>
         <div className="absolute bottom-0 left-0 w-[30vw] h-[50vh] bg-[#8dc63f] rounded-tr-full opacity-10 blur-[100px] -translate-x-1/4"></div>
@@ -36,13 +36,12 @@ export default function App() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-[#8dc63f] font-medium tracking-widest uppercase text-sm mb-6 flex items-center gap-2">
+              <span className="text--black font-medium tracking-widest uppercase text-sm flex items-center gap-2">
                 <Plane size={16} /> Welcome to Explore Epic
               </span>
 
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-white leading-[1.1] mb-6 tracking-wide">
-                Curating <br />
-                <span className="text-[#e8bc5b] font-serif italic pr-2">
+                <span className="text-[#dd9b0b] font-bold text-4xl md:text-5xl tracking-widest uppercase">
                   Extraordinary
                 </span>
                 <br />
@@ -51,7 +50,7 @@ export default function App() {
                 </span>
               </h1>
 
-              <p className="text-base text-gray-300 font-light mb-10 max-w-lg leading-relaxed bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-sm">
+              <p className="text-base text-gray-300 font-light mb-10 max-w-lg leading-relaxed bg-customBlue/50 border border-white/10 p-4 rounded-2xl backdrop-blur-sm">
                 <span className="text-[#e8bc5b] font-medium">
                   Holiday Sale!
                 </span>{" "}
@@ -61,15 +60,15 @@ export default function App() {
 
               <div className="flex flex-wrap items-center gap-4">
                 <button className="bg-[#8dc63f] hover:bg-[#7ab033] text-white px-8 py-3.5 rounded-full font-medium text-sm transition-all shadow-lg flex items-center gap-2 group">
-                  Explore The Map
-                  <MapPin
+                  View Flash Sales
+                  <ArrowRight
                     size={16}
-                    className="group-hover:translate-x-1 transition-transform"
+                    className="group-hover:translate-x-2 transition-transform"
                   />
                 </button>
-                <button className="bg-transparent border border-gray-500 hover:border-white text-white px-8 py-3.5 rounded-full font-medium text-sm transition-all flex items-center gap-2">
+                {/* <button className="bg-transparent border border-gray-500 hover:border-white text-white px-8 py-3.5 rounded-full font-medium text-sm transition-all flex items-center gap-2">
                   View Experiences
-                </button>
+                </button> */}
               </div>
             </motion.div>
           </div>

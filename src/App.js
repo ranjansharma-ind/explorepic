@@ -1,6 +1,6 @@
 import "./App.css";
 import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/UpdatedNavbar";
 import Heritage from "./components/Heritage";
 import Alternatives from "./components/Alternatives";
 import InitialPopup from "./components/InitialPopup";
