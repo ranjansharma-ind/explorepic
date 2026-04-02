@@ -15,8 +15,8 @@ function App() {
       <Navbar />
       <Hero />
       <TheCollection />
-      <Heritage />
       <Alternatives />
+      <Heritage />
       <Moments />
       <Footer />
     </div>

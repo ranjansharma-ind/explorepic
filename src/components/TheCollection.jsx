@@ -167,7 +167,7 @@ const FlashSales = () => {
                   <motion.button 
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-[#003580] text-white font-semibold py-4 rounded-full flex items-center justify-center gap-2 hover:bg-[#002a66] transition-colors shadow-lg shadow-blue-900/10"
+                    className="w-full bg-customBlue text-white font-semibold py-4 rounded-full flex items-center justify-center gap-2 hover:bg-[#002a66] transition-colors shadow-lg shadow-blue-900/10"
                   >
                     {sale.buttonText}
                     {sale.hasIcon && (
