@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ArrowRight, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Alternatives() {
@@ -8,9 +8,12 @@ export default function Alternatives() {
       id: 1,
       title: "Chopta Tungnath",
       location: "Uttarakhand",
+      date: "Oct14 - Oct21,2026",
       descrition:
         "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
-      price: "Top-Rated",
+      price: "9000",
+      badge: "TOP-RATED",
+      badgeColor: "bg-blue-800",
       image:
         "https://images.unsplash.com/photo-1633702738734-443da2c18f3c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
@@ -18,9 +21,12 @@ export default function Alternatives() {
       id: 2,
       title: "Jibhi-Tirthan",
       location: "Himachal",
+      date: "Oct14 - Oct21,2026",
       descrition:
         "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
       price: "8999",
+      badge: "4 SPOTLIGHT",
+      badgeColor: "bg-blue-800",
       image:
         "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80",
     },
@@ -28,7 +34,10 @@ export default function Alternatives() {
       id: 3,
       title: "Manali-Sissu-Kasol",
       location: "Himachal",
+      date: "Oct14 - Oct21,2026",
       price: "11000",
+      badge: "ONLY2SPOTLIGHT",
+      badgeColor: "bg-red-600",
       descrition:
         "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
       image:
@@ -38,6 +47,9 @@ export default function Alternatives() {
       id: 4,
       title: "Embrace the wild Kedarnath",
       location: "Uttarakhand",
+      date: "Oct14 - Oct21,2026",
+      badge: "6SPOTLIGHT",
+      badgeColor: "bg-green-800",
       descrition:
         "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
       price: "6500",
@@ -48,6 +60,9 @@ export default function Alternatives() {
       id: 5,
       title: "Auli with Gorson Bugyal",
       location: "Uttarakhand",
+      badge: "TOP-RATED",
+      date: "Oct14 - Oct21,2026",
+      badgeColor: "bg-blue-800",
       descrition:
         "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
       price: "6550",
@@ -58,6 +73,9 @@ export default function Alternatives() {
       id: 6,
       title: "The queen of Thar Jaisalmer",
       location: "Rajasthan",
+      badge: "TOP-RATED",
+      badgeColor: "bg-blue-800",
+      date: "Oct14 - Oct21,2026",
       descrition:
         "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
       price: "7999",
@@ -68,6 +86,9 @@ export default function Alternatives() {
       id: 7,
       title: "Manali including Kheerganga",
       location: "Himachal",
+      badge: "TOP-RATED",
+      badgeColor: "bg-blue-800",
+      date: "Oct14 - Oct21,2026",
       price: "5000",
       descrition:
         "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
@@ -78,6 +99,9 @@ export default function Alternatives() {
       id: 8,
       title: "Mcleodganj Triund Trip",
       location: "Himachal",
+      badge: "TOP-RATED",
+      badgeColor: "bg-blue-800",
+      date: "Oct14 - Oct21,2026",
       descrition:
         "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
       price: "6999",
@@ -85,11 +109,25 @@ export default function Alternatives() {
         "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80",
     },
   ];
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const cardVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
   return (
     <div>
       {/* --- SECTION 3: ALTERNATIVE PACKAGES (Cross Scroll) --- */}
       <section className="py-20 bg-gray-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-10 flex justify-between items-end">
+        <div className="max-w-7xl mx-auto px-8 md:px-8 mb-10 flex justify-between items-end">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -116,14 +154,15 @@ export default function Alternatives() {
         </div>
         {/* Horizontal Scroll Container */}
         <div
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory px-6 md:px-12 pb-12 hide-scrollbar max-w-7xl mx-auto"
+          className="flex gap-6 pt-2 overflow-x-auto snap-x snap-mandatory px-6 md:px-12 pb-12 hide-scrollbar max-w-7xl mx-auto"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {packages.map((pkg) => (
             <motion.div
               key={pkg.id}
-              whileHover={{ y: -5 }}
-              className="min-w-[300px] md:min-w-[300px] bg-white rounded-2xl overflow-hidden shadow-lg snap-start border border-gray-100"
+              variants={cardVariants}
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              className="relative min-w-[300px] md:min-w-[300px] bg-white rounded-2xl overflow-hidden shadow-lg snap-start border border-gray-100"
             >
               <div className="h-56 overflow-hidden relative">
                 <img
@@ -131,8 +170,10 @@ export default function Alternatives() {
                   alt={pkg.title}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-4 right-4 bg-[#416901] backdrop-blur text-white font-medium px-3 py-1 rounded-full text-sm">
-                  {pkg.price}
+                <div
+                  className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 rounded-full tracking-wider uppercase shadow-md`}
+                >
+                  {pkg.badge}
                 </div>
               </div>
               <div className="p-6 text-left">
@@ -143,9 +184,27 @@ export default function Alternatives() {
                   {pkg.title}
                 </h3>
                 <p className="mb-5">{pkg.descrition}</p>
-                <button className="text-[#002db3] font-medium flex items-center gap-1 hover:text-[#e8bc5b] transition-colors">
-                  View Details <ChevronRight size={16} />
-                </button>
+                <p className="text-gray-500 font-medium text-sm mb-10 flex gap-2 items-center">
+                 <Calendar className="text-sm size-4 text-black"/> {pkg.date}
+                </p>
+                <motion.div
+                  variants={itemVariants}
+                  className="flex justify-between items-center pt-2 bottom-0 left-0 right-0 absolute px-4 py-4"
+                >
+                  <p className="font-semibold">
+                    ₹ {pkg.price}{" "}
+                    <span className="text-sm font-normal text-muted-foreground">
+                      / person
+                    </span>
+                  </p>
+                  <motion.button
+                    variants={itemVariants}
+                    className="group flex text-sm font-medium bg-black hover:bg-customYellow hover:transition-all text-white p-2 rounded-lg text-center items-center"
+                  >
+                    Book Now
+                    <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
+                  </motion.button>
+                </motion.div>
               </div>
             </motion.div>
           ))}

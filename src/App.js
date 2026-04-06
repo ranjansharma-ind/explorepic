@@ -1,12 +1,12 @@
 import "./App.css";
 import Hero from "./components/Hero";
 import Navbar from "./components/UpdatedNavbar";
-import Heritage from "./components/Heritage";
 import Alternatives from "./components/Alternatives";
 import InitialPopup from "./components/InitialPopup";
-import Moments from "./components/Moments";
 import TheCollection from "./components/TheCollection";
 import Footer from "./components/footer";
+import Testimonials from "./components/Testimonials";
+import ExpeditionForm from "./components/ExpeditionForm";
 
 function App() {
   return (
@@ -16,8 +16,8 @@ function App() {
       <Hero />
       <TheCollection />
       <Alternatives />
-      <Heritage />
-      <Moments />
+      <Testimonials />
+      <ExpeditionForm />
       <Footer />
     </div>
   );

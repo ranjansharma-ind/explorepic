@@ -114,10 +114,10 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               <li className="flex items-center gap-2">
-                <Phone size={16} /> +1 (800) 123-4567
+                <Phone size={16} /> +91 82851 82582
               </li>
               <li className="flex items-center gap-2">
-                <MapPin size={16} /> Global Headquarters
+                <MapPin size={16} /> Delhi
               </li>
             </ul>
             <button className="mt-6 bg-[#002db3] text-white px-6 py-2 rounded-full border border-blue-800 hover:bg-[#e8bc5b] hover:text-[#002db3] hover:border-transparent transition-all font-medium">
