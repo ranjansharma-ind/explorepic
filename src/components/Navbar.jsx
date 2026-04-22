@@ -81,7 +81,7 @@ export default function Navbar() {
 
             {/* Right Corner Buttons */}
             <div className="hidden md:flex items-center gap-4 lg:gap-6">
-              <button className="flex items-center gap-2 text-white hover:text-[#e8bc5b] transition-colors font-light">
+              <button className="flex items-center gap-2 text-black hover:text-[#e8bc5b] transition-colors font-light">
                 <Phone size={18} />
                 <span className="hidden lg:inline">Call Us</span>
               </button>

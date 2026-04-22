@@ -154,7 +154,7 @@ export default function Alternatives() {
         </div>
         {/* Horizontal Scroll Container */}
         <div
-          className="flex gap-6 pt-2 overflow-x-auto snap-x snap-mandatory px-6 md:px-12 pb-12 hide-scrollbar max-w-7xl mx-auto"
+          className="flex gap-6 pt-2 overflow-x-auto snap-mandatory px-6 md:px-12 pb-12 hide-scrollbar max-w-7xl mx-auto"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {packages.map((pkg) => (

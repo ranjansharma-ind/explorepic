@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import { User, Menu, X } from "lucide-react";
+import { Plane, Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
@@ -89,7 +89,7 @@ const Navbar = () => {
               className="hidden lg:flex items-center gap-5 flex-shrink-0"
             >
               <button className="bg-customYellow text-black px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-saffron hover:shadow-lg hover:shadow-saffron/20 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 group">
-                <User
+                <Plane
                   size={16}
                   className="group-hover:text-black transition-colors duration-300"
                 />
@@ -122,11 +122,11 @@ const Navbar = () => {
             >
               <div className="flex flex-col p-6 space-y-2 h-full">
                 {/* Close Button */}
-                <div className="flex justify-end mb-4">
+                {/* <div className="flex justify-end mb-4">
                   <button onClick={() => setMobileMenuOpen(false)}>
                     <X size={24} />
                   </button>
-                </div>
+                </div> */}
 
                 {/* Links */}
                 {links.map((link) => (
@@ -143,7 +143,7 @@ const Navbar = () => {
                 {/* Bottom Button */}
                 <div className="mt-auto pt-6 border-t">
                   <button className="w-full py-4 rounded-full bg-customYellow text-black font-semibold flex items-center justify-center gap-2">
-                    <User size={18} /> Login
+                    <Plane size={18} /> Book Now
                   </button>
                 </div>
               </div>
