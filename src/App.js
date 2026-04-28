@@ -14,6 +14,7 @@ function App() {
       <InitialPopup />
       <Navbar />
       <Hero />
+      {/* <New/> */}
       <TheCollection />
       <Alternatives />
       <Testimonials />

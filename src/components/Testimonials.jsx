@@ -63,6 +63,7 @@ const TestimonialCard = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8 }}
+              key={index}
               className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full relative overflow-hidden"
             >
               {/* Background Decorative Quote Icon */}

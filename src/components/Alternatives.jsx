@@ -1,19 +1,31 @@
-import { ChevronRight, ArrowRight, Calendar } from "lucide-react";
-import { motion } from "framer-motion";
+import {
+  Star,
+  Heart,
+  MapPin,
+  Home,
+  Compass,
+  Bookmark,
+  User,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 export default function Alternatives() {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [favorites, setFavorites] = useState(new Set([2, 5]));
+  const [activeTab, setActiveTab] = useState("home");
+
   // --- MOCK DATA ---
-  const packages = [
+  const DESTINATIONS = [
     {
       id: 1,
       title: "Chopta Tungnath",
       location: "Uttarakhand",
       date: "Oct14 - Oct21,2026",
-      descrition:
-        "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
       price: "9000",
       badge: "TOP-RATED",
       badgeColor: "bg-blue-800",
+      category: "Culture",
       image:
         "https://images.unsplash.com/photo-1633702738734-443da2c18f3c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
@@ -22,11 +34,10 @@ export default function Alternatives() {
       title: "Jibhi-Tirthan",
       location: "Himachal",
       date: "Oct14 - Oct21,2026",
-      descrition:
-        "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
       price: "8999",
       badge: "4 SPOTLIGHT",
       badgeColor: "bg-blue-800",
+      category: "Beach",
       image:
         "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80",
     },
@@ -38,8 +49,7 @@ export default function Alternatives() {
       price: "11000",
       badge: "ONLY2SPOTLIGHT",
       badgeColor: "bg-red-600",
-      descrition:
-        "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
+      category: "Mountain",
       image:
         "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80",
     },
@@ -50,9 +60,8 @@ export default function Alternatives() {
       date: "Oct14 - Oct21,2026",
       badge: "6SPOTLIGHT",
       badgeColor: "bg-green-800",
-      descrition:
-        "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
       price: "6500",
+      category: "Beach",
       image:
         "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80",
     },
@@ -63,152 +72,229 @@ export default function Alternatives() {
       badge: "TOP-RATED",
       date: "Oct14 - Oct21,2026",
       badgeColor: "bg-blue-800",
-      descrition:
-        "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
       price: "6550",
-      image:
-        "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 6,
-      title: "The queen of Thar Jaisalmer",
-      location: "Rajasthan",
-      badge: "TOP-RATED",
-      badgeColor: "bg-blue-800",
-      date: "Oct14 - Oct21,2026",
-      descrition:
-        "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
-      price: "7999",
-      image:
-        "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 7,
-      title: "Manali including Kheerganga",
-      location: "Himachal",
-      badge: "TOP-RATED",
-      badgeColor: "bg-blue-800",
-      date: "Oct14 - Oct21,2026",
-      price: "5000",
-      descrition:
-        "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
-      image:
-        "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 8,
-      title: "Mcleodganj Triund Trip",
-      location: "Himachal",
-      badge: "TOP-RATED",
-      badgeColor: "bg-blue-800",
-      date: "Oct14 - Oct21,2026",
-      descrition:
-        "A lost city carved in rose-colored stone, hidden in majestic desert canyons.",
-      price: "6999",
+      category: "City",
       image:
         "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80",
     },
   ];
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0 },
+  const CATEGORIES = ["All", "Beach", "Mountain", "Culture", "City", "Forest"];
+
+  const toggleFavorite = (id) => {
+    setFavorites((prev) => {
+      const newFavs = new Set(prev);
+      if (newFavs.has(id)) {
+        newFavs.delete(id);
+      } else {
+        newFavs.add(id);
+      }
+      return newFavs;
+    });
   };
 
-  const cardVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
+  const filteredDestinations =
+    activeCategory === "All"
+      ? DESTINATIONS
+      : DESTINATIONS.filter((d) => d.category === activeCategory);
+
   return (
     <div>
       {/* --- SECTION 3: ALTERNATIVE PACKAGES (Cross Scroll) --- */}
       <section className="py-20 bg-gray-50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-8 md:px-8 mb-10 flex justify-between items-end">
+        <div className="max-w-7xl mx-auto px-8 md:px-8 mb-4">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex justify-between items-end mb-4"
           >
-            <div className="text-left max-w-6xl mx-auto">
-              <h1 className="text-4xl font-bold text-[#003580] mb-2 tracking-wide">
-                Upcoming Trips
-              </h1>
-              <p className="text-gray-500 text-lg">
-                Hand-picked itineraies with guaranted departure dates.
-              </p>
+            <div className="text-left max-w-6xl">
+              <div className="flex items-center gap-2">
+              <h3 className="text-lg font-bold text-slate-900">Upcoming Trips</h3>
             </div>
+            </div>
+            <button className="text-sm font-medium text-blue-600 hover:text-blue-700">
+              See all
+            </button>
           </motion.div>
-          <div className="hidden md:flex gap-2">
-            <button className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-[#002db3] hover:text-white transition-colors">
-              <ChevronRight className="rotate-180" />
-            </button>
-            <button className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-[#002db3] hover:text-white transition-colors">
-              <ChevronRight />
-            </button>
-          </div>
         </div>
         {/* Horizontal Scroll Container */}
-        <div
-          className="flex gap-6 pt-2 overflow-x-auto snap-mandatory px-6 md:px-12 pb-12 hide-scrollbar max-w-7xl mx-auto"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {packages.map((pkg) => (
+        <main className="max-w-7xl mx-auto">
+          {/* Horizontal Scroll Categories */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="px-4 py-4 md:py-6 overflow-x-auto scrollbar-hide flex gap-2 sm:gap-3 items-center"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {CATEGORIES.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`whitespace-nowrap px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                  activeCategory === category
+                    ? "bg-slate-900 text-white shadow-md shadow-slate-900/20"
+                    : "bg-white text-slate-600 border border-slate-200 hover:bg-slate-50"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </motion.div>
+
+          {/* Small Grid Cards Section */}
+          <div className="px-4 pb-8">
+            {/* The Grid: Animated layout changes */}
             <motion.div
-              key={pkg.id}
-              variants={cardVariants}
-              whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className="relative min-w-[300px] md:min-w-[300px] bg-white rounded-2xl overflow-hidden shadow-lg snap-start border border-gray-100"
+              layout
+              className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
             >
-              <div className="h-56 overflow-hidden relative">
-                <img
-                  src={pkg.image}
-                  alt={pkg.title}
-                  className="w-full h-full object-cover"
-                />
-                <div
-                  className={`absolute top-4 left-4 ${pkg.badgeColor} text-white text-[10px] font-bold px-3 py-1 rounded-full tracking-wider uppercase shadow-md`}
-                >
-                  {pkg.badge}
-                </div>
-              </div>
-              <div className="p-6 text-left">
-                <p className="text-gray-500 font-medium text-sm mb-2">
-                  {pkg.location}
-                </p>
-                <h3 className="text-xl font-medium text-gray-900 mb-4">
-                  {pkg.title}
-                </h3>
-                <p className="mb-5">{pkg.descrition}</p>
-                <p className="text-gray-500 font-medium text-sm mb-10 flex gap-2 items-center">
-                 <Calendar className="text-sm size-4 text-black"/> {pkg.date}
-                </p>
-                <motion.div
-                  variants={itemVariants}
-                  className="flex justify-between items-center pt-2 bottom-0 left-0 right-0 absolute px-4 py-4"
-                >
-                  <p className="font-semibold">
-                    ₹ {pkg.price}{" "}
-                    <span className="text-sm font-normal text-muted-foreground">
-                      / person
-                    </span>
-                  </p>
-                  <motion.button
-                    variants={itemVariants}
-                    className="group flex text-sm font-medium bg-black hover:bg-customYellow hover:transition-all text-white p-2 rounded-lg text-center items-center"
+              <AnimatePresence mode="popLayout">
+                {filteredDestinations.map((dest) => (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.25 }}
+                    key={dest.id}
+                    className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-pointer"
                   >
-                    Book Now
-                    <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" />
-                  </motion.button>
-                </motion.div>
-              </div>
+                    {/* Image Container */}
+                    <div className="relative aspect-[4/4] w-full overflow-hidden bg-slate-200">
+                      <motion.img
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.4 }}
+                        src={dest.image}
+                        alt={dest.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      {/* Rating Badge (Top Left) */}
+                      <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1 shadow-sm">
+                        <Star className="w-3 h-3 text-amber-500 fill-amber-500" />
+                        <span className="text-[11px] font-bold text-slate-800">
+                          {dest.rating}
+                        </span>
+                      </div>
+                      {/* Favorite Button (Top Right) */}
+                      <motion.button
+                        whileTap={{ scale: 0.8 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleFavorite(dest.id);
+                        }}
+                        className="absolute top-2 right-2 p-1.5 rounded-full bg-white/50 backdrop-blur-md hover:bg-white transition-colors"
+                      >
+                        <motion.div
+                          animate={{
+                            scale: favorites.has(dest.id) ? [1, 1.3, 1] : 1,
+                          }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <Heart
+                            className={`w-4 h-4 transition-colors ${favorites.has(dest.id) ? "fill-red-500 text-red-500" : "text-slate-700"}`}
+                          />
+                        </motion.div>
+                      </motion.button>
+                    </div>
+
+                    {/* Card Content */}
+                    <div className="p-3 flex flex-col flex-grow">
+                      <div className="flex items-start justify-between gap-1 mb-1">
+                        <h4 className="font-semibold text-slate-900 text-sm md:text-base leading-tight truncate">
+                          {dest.title}
+                        </h4>
+                      </div>
+
+                      <div className="flex items-center text-slate-500 mb-2">
+                        <MapPin className="w-3 h-3 mr-1 shrink-0" />
+                        <span className="text-xs truncate">
+                          {dest.location}
+                        </span>
+                      </div>
+
+                      <div className="mt-auto pt-2 border-t border-slate-50 flex items-center justify-between">
+                        <div className="flex flex-col">
+                          <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
+                            Price
+                          </span>
+                          <div className="flex items-baseline">
+                            <span className="font-bold text-slate-900 text-sm">
+                              ${dest.price}
+                            </span>
+                            <span className="text-[10px] text-slate-500 ml-0.5">
+                              /night
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
             </motion.div>
-          ))}
-        </div>
+          </div>
+        </main>
+        {/* Mobile Bottom Navigation */}
+        <motion.div
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 30,
+            delay: 0.5,
+          }}
+          className="md:hidden fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 pb-safe z-40"
+        >
+          <div className="flex items-center justify-around h-16 px-2">
+            {["home", "explore", "saved", "profile"].map((tab) => {
+              const Icon =
+                tab === "home"
+                  ? Home
+                  : tab === "explore"
+                    ? Compass
+                    : tab === "saved"
+                      ? Bookmark
+                      : User;
+              const isActive = activeTab === tab;
+
+              return (
+                <motion.button
+                  key={tab}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setActiveTab(tab)}
+                  className={`relative flex flex-col items-center justify-center w-16 h-full space-y-1 transition-colors ${isActive ? "text-blue-600" : "text-slate-400 hover:text-slate-600"}`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNavIndicator"
+                      className="absolute -top-[1px] w-8 h-[2px] bg-blue-600 rounded-b-full"
+                    />
+                  )}
+                  <Icon
+                    className={`w-6 h-6 ${isActive ? "fill-blue-50" : ""}`}
+                  />
+                  <span className="text-[10px] font-medium capitalize">
+                    {tab}
+                  </span>
+                </motion.button>
+              );
+            })}
+          </div>
+        </motion.div>
+        {/* Hide scrollbar styles for webkit browsers added dynamically */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+      `,
+          }}
+        />
       </section>
     </div>
   );
