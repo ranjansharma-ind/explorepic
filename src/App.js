@@ -7,6 +7,7 @@ import TheCollection from "./components/TheCollection";
 import Footer from "./components/footer";
 import Testimonials from "./components/Testimonials";
 import ExpeditionForm from "./components/ExpeditionForm";
+// import New from "./components/new"
 
 function App() {
   return (

@@ -1,120 +1,203 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
+import { Sun, Moon } from 'lucide-react';
 
+// --- Data ---
 const testimonials = [
   {
-    id: 1,
-    name: "Rahul Sharma",
-    role: "AVID TREKKER",
-    content:
-      "Explore Epic organized our Spiti trek perfectly. The local knowledge and safety standards they maintain are truly premium.",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+    text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Briana Patton",
+    role: "Operations Manager",
   },
   {
-    id: 2,
-    name: "Ananya Singh",
-    role: "HR MANAGER, ZEPHYR TECH",
-    content:
-      "The corporate retreat they designed for our tech team in Jibhi was transformative. Perfect balance of work and adventure.",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200&h=200",
+    text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Bilal Ahmed",
+    role: "IT Manager",
   },
   {
-    id: 3,
-    name: "Vikram Mehta",
-    role: "LUXURY TRAVELER",
-    content:
-      "Never knew Rajasthan could be so adventurous! The desert glamping and night safaris were beyond my expectations.",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200&h=200",
+    text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Saman Malik",
+    role: "Customer Support Lead",
+  },
+  {
+    text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Omar Raza",
+    role: "CEO",
+  },
+  {
+    text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Zainab Hussain",
+    role: "Project Manager",
+  },
+  {
+    text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.",
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Aliza Khan",
+    role: "Business Analyst",
+  },
+  {
+    text: "Our business functions improved with a user-friendly design and positive customer feedback.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Farhan Siddiqui",
+    role: "Marketing Director",
+  },
+  {
+    text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Sana Sheikh",
+    role: "Sales Manager",
+  },
+  {
+    text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150",
+    name: "Hassan Ali",
+    role: "E-commerce Manager",
   },
 ];
 
-const TestimonialCard = () => {
+const firstColumn = testimonials.slice(0, 3);
+const secondColumn = testimonials.slice(3, 6);
+const thirdColumn = testimonials.slice(6, 9);
+
+// --- Sub-Components ---
+const TestimonialsColumn = (props) => {
   return (
-    <section className="min-h-screen bg-white py-20 px-6 flex items-center">
-      <div className="max-w-7xl mx-auto w-full">
-        {/* Header section */}
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: -10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl font-bold text-[#003580] mb-2 tracking-wide"
-          >
-            Trusted by Explorers
-          </motion.h2>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="h-1 w-24 bg-orange-400 mx-auto mt-4 rounded-full"
-          />
-        </div>
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
-              key={index}
-              className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between h-full relative overflow-hidden"
-            >
-              {/* Background Decorative Quote Icon */}
-              <div className="absolute top-6 right-8 text-orange-200/40">
-                <Quote size={48} fill="currentColor" stroke="none" />
-              </div>
+    <div className={props.className}>
+      <motion.ul
+        animate={{ translateY: "-50%" }}
+        transition={{
+          duration: props.duration || 10,
+          repeat: Infinity,
+          ease: "linear",
+          repeatType: "loop",
+        }}
+        className="flex flex-col gap-6 pb-6 bg-transparent transition-colors duration-300 list-none m-0 p-0"
+      >
+        {[
+          ...new Array(2).fill(0).map((_, index) => (
+            <React.Fragment key={index}>
+              {props.testimonials.map(({ text, image, name, role }, i) => (
+                <motion.li
+                  key={`${index}-${i}`}
+                  aria-hidden={index === 1 ? "true" : "false"}
+                  tabIndex={index === 1 ? -1 : 0}
+                  whileHover={{
+                    scale: 1.03,
+                    y: -8,
+                    boxShadow:
+                      "0 25px 50px -12px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)",
+                    transition: { type: "spring", stiffness: 400, damping: 17 },
+                  }}
+                  whileFocus={{
+                    scale: 1.03,
+                    y: -8,
+                    boxShadow:
+                      "0 25px 50px -12px rgba(0, 0, 0, 0.12), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05)",
+                    transition: { type: "spring", stiffness: 400, damping: 17 },
+                  }}
+                  className="p-10 rounded-3xl border border-neutral-200 dark:border-neutral-800 shadow-lg shadow-black/5 max-w-xs w-full bg-white dark:bg-neutral-900 transition-all duration-300 cursor-default select-none group focus:outline-none focus:ring-2 focus:ring-primary/30"
+                >
+                  <blockquote className="m-0 p-0">
+                    <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed font-normal m-0 transition-colors duration-300">
+                      {text}
+                    </p>
+                    <footer className="flex items-center gap-3 mt-6">
+                      <img
+                        width={40}
+                        height={40}
+                        src={image}
+                        alt={`Avatar of ${name}`}
+                        className="h-10 w-10 rounded-full object-cover ring-2 ring-neutral-100 dark:ring-neutral-800 group-hover:ring-primary/30 transition-all duration-300 ease-in-out"
+                      />
+                      <div className="flex flex-col">
+                        <cite className="font-semibold not-italic tracking-tight leading-5 text-neutral-900 dark:text-white transition-colors duration-300">
+                          {name}
+                        </cite>
+                        <span className="text-sm leading-5 tracking-tight text-neutral-500 dark:text-neutral-500 mt-0.5 transition-colors duration-300">
+                          {role}
+                        </span>
+                      </div>
+                    </footer>
+                  </blockquote>
+                </motion.li>
+              ))}
+            </React.Fragment>
+          )),
+        ]}
+      </motion.ul>
+    </div>
+  );
+};
 
-              <div className="relative z-10">
-                <p className="text-gray-600 italic text-lg leading-relaxed mb-8">
-                  "{testimonial.content}"
-                </p>
-              </div>
+const TestimonialsSection = () => {
+  return (
+    <section
+      aria-labelledby="testimonials-heading"
+      className="bg-transparent py-5 relative overflow-hidden"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 50, rotate: -2 }}
+        whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{
+          duration: 1.2,
+          ease: [0.16, 1, 0.3, 1],
+          opacity: { duration: 0.8 },
+        }}
+        className="container px-4 z-10 mx-auto"
+      >
+        <div className="flex flex-col items-center justify-center max-w-[540px] mx-auto mb-16">
+          <div className="flex justify-center">
+            <div className="border border-neutral-300 dark:border-neutral-700 py-1 px-4 rounded-full text-xs font-semibold tracking-wide uppercase text-neutral-600 dark:text-neutral-400 bg-neutral-100/50 dark:bg-neutral-800/50 transition-colors">
+              Testimonials
+            </div>
+          </div>
 
-              <div className="flex items-center gap-4 mt-auto">
-                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-100 flex-shrink-0">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      e.target.src =
-                        "https://ui-avatars.com/api/?name=" +
-                        encodeURIComponent(testimonial.name);
-                    }}
-                  />
-                </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 leading-tight">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-xs font-semibold text-gray-400 tracking-wider uppercase mt-0.5">
-                    {testimonial.role}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          <h2 className="text-[#dd9b0b] font-bold text-4xl md:text-3xl tracking-widest uppercase font-extrabold mt-6 text-center text-neutral-900 dark:text-white transition-colors">
+            What our users say
+          </h2>
+          <p className="text-center mt-5 text-neutral-500 dark:text-neutral-400 text-md leading-relaxed max-w-sm transition-colors">
+            Discover how thousands of teams streamline their operations with our platform.
+          </p>
         </div>
-        {/* Trust Badge / Subtext */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="text-center text-gray-400 mt-16 text-sm uppercase tracking-[0.2em]"
-        >
-          Join 5,000+ happy adventurers worldwide
-        </motion.p>
-      </div>
+
+        <div className="flex justify-center gap-6 mt-10 max-h-[740px] overflow-hidden">
+          <TestimonialsColumn testimonials={firstColumn} duration={15} />
+          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
+          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />
+        </div>
+      </motion.div>
     </section>
   );
 };
 
-export default TestimonialCard;
+// --- Main App Component ---
+export default function App() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
+
+  return (
+    <div className="w-screen min-h-screen bg-white dark:bg-neutral-950 transition-colors duration-300 flex flex-col justify-center relative">
+      <button
+        onClick={() => setIsDark(!isDark)}
+        className="fixed top-6 right-6 z-50 p-3 rounded-full bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-100 border border-neutral-200 dark:border-neutral-800 shadow-xl hover:scale-110 transition-all active:scale-95"
+      >
+        {isDark ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
+
+      <TestimonialsSection />
+    </div>
+  );
+}

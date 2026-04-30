@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, Zap, Clock } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 
 const FlashSales = () => {
   const FLASH_TRIPS = [
@@ -70,7 +70,7 @@ const FlashSales = () => {
   ];
 
   return (
-    <div className=" bg-gray-50 py-12 px-4 md:-mt-15 sm:px-6 lg:px-8 text-left">
+    <div className=" bg-gray-50 pt-12 px-4 md:-mt-15 sm:px-6 lg:px-8 text-left">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-7xl mx-auto px-8 md:px-8 mb-4">
           <motion.div
@@ -80,8 +80,7 @@ const FlashSales = () => {
           >
             <div className="text-left max-w-6xl">
               <div className="flex items-center gap-2">
-              <h3 className="text-lg font-bold text-slate-900">Flash Sales</h3>
-              <Zap className="w-5 h-5 text-amber-500 fill-amber-500" />
+              <h3 className="text-[#dd9b0b] font-bold text-4xl md:text-3xl tracking-widest uppercase font-extrabold mt-6 text-center text-neutral-900 dark:text-white transition-colors">Flash Sales</h3>
             </div>
             </div>
             <div className="flex items-center gap-1 text-red-500 bg-red-50 px-2 py-1 rounded-md">

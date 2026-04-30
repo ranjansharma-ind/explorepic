@@ -101,7 +101,7 @@ export default function Alternatives() {
   return (
     <div>
       {/* --- SECTION 3: ALTERNATIVE PACKAGES (Cross Scroll) --- */}
-      <section className="py-20 bg-gray-50 overflow-hidden">
+      <section className="py-10 bg-gray-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-8 md:px-8 mb-4">
           <motion.div
             initial={{ opacity: 0 }}
@@ -110,7 +110,7 @@ export default function Alternatives() {
           >
             <div className="text-left max-w-6xl">
               <div className="flex items-center gap-2">
-              <h3 className="text-lg font-bold text-slate-900">Upcoming Trips</h3>
+              <h1 className="text-[#dd9b0b] font-bold text-4xl md:text-3xl tracking-widest uppercase font-extrabold mt-6 text-center text-neutral-900 dark:text-white transition-colors">Upcoming Trips</h1>
             </div>
             </div>
             <button className="text-sm font-medium text-blue-600 hover:text-blue-700">
@@ -222,7 +222,7 @@ export default function Alternatives() {
                           </span>
                           <div className="flex items-baseline">
                             <span className="font-bold text-slate-900 text-sm">
-                              ${dest.price}
+                              ₹{dest.price}
                             </span>
                             <span className="text-[10px] text-slate-500 ml-0.5">
                               /night
