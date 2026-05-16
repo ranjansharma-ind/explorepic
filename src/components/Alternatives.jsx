@@ -2,10 +2,10 @@ import {
   Star,
   Heart,
   MapPin,
-  Home,
-  Compass,
-  Bookmark,
-  User,
+  // Home,
+  // Compass,
+  // Bookmark,
+  // User,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
@@ -13,7 +13,7 @@ import { useState } from "react";
 export default function Alternatives() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [favorites, setFavorites] = useState(new Set([2, 5]));
-  const [activeTab, setActiveTab] = useState("home");
+  // const [activeTab, setActiveTab] = useState("home");
 
   // --- MOCK DATA ---
   const DESTINATIONS = [
@@ -110,7 +110,7 @@ export default function Alternatives() {
           >
             <div className="text-left max-w-6xl">
               <div className="flex items-center gap-2">
-              <h1 className="text-[#dd9b0b] font-bold text-4xl md:text-3xl tracking-widest uppercase font-extrabold mt-6 text-center text-neutral-900 dark:text-white transition-colors">Upcoming Trips</h1>
+              <h1 className="text-4xl md:text-3xl tracking-widest uppercase font-extrabold mt-6 text-center text-neutral-900 dark:text-white transition-colors">Upcoming Trips</h1>
             </div>
             </div>
             <button className="text-sm font-medium text-blue-600 hover:text-blue-700">
@@ -238,7 +238,7 @@ export default function Alternatives() {
           </div>
         </main>
         {/* Mobile Bottom Navigation */}
-        <motion.div
+        {/* <motion.div
           initial={{ y: 100 }}
           animate={{ y: 0 }}
           transition={{
@@ -284,7 +284,7 @@ export default function Alternatives() {
               );
             })}
           </div>
-        </motion.div>
+        </motion.div> */}
         {/* Hide scrollbar styles for webkit browsers added dynamically */}
         <style
           dangerouslySetInnerHTML={{

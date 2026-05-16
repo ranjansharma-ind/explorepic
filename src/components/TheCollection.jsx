@@ -80,7 +80,7 @@ const FlashSales = () => {
           >
             <div className="text-left max-w-6xl">
               <div className="flex items-center gap-2">
-              <h3 className="text-[#dd9b0b] font-bold text-4xl md:text-3xl tracking-widest uppercase font-extrabold mt-6 text-center text-neutral-900 dark:text-white transition-colors">Flash Sales</h3>
+              <h3 className="text-4xl md:text-3xl tracking-widest uppercase font-extrabold mt-6 text-center text-neutral-900 dark:text-white transition-colors">Flash Sales</h3>
             </div>
             </div>
             <div className="flex items-center gap-1 text-red-500 bg-red-50 px-2 py-1 rounded-md">
